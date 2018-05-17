@@ -1,0 +1,16 @@
+---
+allow_services:
+        - ssh
+        - https
+        - http
+        - ftp
+
+allow_ports:
+        - 22222
+
+deny_services:
+        - ftp
+
+deny_ports:
+        - 1000-65535/udp
+        - 25

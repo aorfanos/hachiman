@@ -1,0 +1,13 @@
+---
+- name: Update software repositories
+  yum: name="*" state=latest
+
+- name: Installing software dependencies
+  yum:
+          name: {{ item }}
+          state: present
+  with_items:
+    - "{{ fail2ban }}"
+    - "{{ apache2 }}"
+  tags:
+    - dependencies

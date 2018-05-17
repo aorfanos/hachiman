@@ -1,0 +1,13 @@
+---
+- name: Install the EPEL repo
+  yum: name=epel-release state=installed
+  become: yes
+  tags:
+          - epel
+
+- name: Install Hachiman dependencies
+  become: yes
+  yum: name={{ item }} state=installed
+  with_items:
+          - fail2ban
+          - git

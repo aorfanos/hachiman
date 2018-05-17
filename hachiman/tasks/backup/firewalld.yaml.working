@@ -1,0 +1,22 @@
+---
+- name: Enabling firewalld
+  service: name=firewalld state=started enabled=yes
+
+- name: Allow http, https and ssh access
+  become: yes
+  firewalld:
+          service: http
+          permanent: true
+          state: enabled
+
+  become: yes
+  firewalld:
+          service: https
+          permanent: true
+          state: enabled
+
+  become: yes
+  firewalld:
+          service: ssh
+          permanent: true
+          state: enabled
