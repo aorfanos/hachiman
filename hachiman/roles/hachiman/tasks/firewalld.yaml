@@ -1,0 +1,25 @@
+---
+- include_vars: roles/hachiman/vars/firewall_policy.yaml
+
+- name: Enabling firewalld
+  service: name=firewalld state=started enabled=yes
+
+- name: Allow access to defined ports and services
+  become: yes
+  firewalld:
+          service: "{{ item }}"
+          permanent: true
+          state: enabled
+  with_items: "{{ allow_services }}"
+
+- name: Deny access to defined ports and services
+  become: yes
+  firewalld:
+          service: "{{ item | default([])}}"
+          permanent: true
+          state: disabled
+  with_items: "{{ deny_ports }}"
+
+- name: Reload firewalld
+  become: yes
+  systemd: name=firewalld daemon_reload=yes

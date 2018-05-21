@@ -1,0 +1,3 @@
+---
+- include: roles/hachiman/tasks/dependencies.yaml
+- include: roles/hachiman/tasks/firewalld.yaml
